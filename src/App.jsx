@@ -97,7 +97,7 @@ export default function EmotionDetector() {
       <div className=" bg-pink-300 px-6 py-4 flex justify-between items-center rounded-xl shadow-lg">
           
         <span className="flex ">
-          <img src="https://cdn-icons-png.flaticon.com/128/14511/14511544.png" alt="" class="w-13 h-12 " />
+          <img src="https://cdn-icons-png.flaticon.com/128/14511/14511544.png" alt="" className="w-13 h-12 " />
 
           <h1 className="text-3xl font-semibold text-white tracking-wide pl-3"> Emotion Detector </h1>
         </span>
