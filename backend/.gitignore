@@ -1,6 +1,1 @@
 .venv/
-models/emotion-detection-models.pkl
-models/decision-tree-model.pkl
-models/naive-bayes-model.pkl
-models/random-forest-model.pkl
-models/svm-model.pkl
