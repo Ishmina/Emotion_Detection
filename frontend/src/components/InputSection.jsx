@@ -1,3 +1,4 @@
+//inputsection.jsx
 import React, { useState, useEffect } from "react";
 
 export default function InputSection({ onDetect, result }) {
@@ -33,16 +34,17 @@ export default function InputSection({ onDetect, result }) {
       >
         <h2 className="text-gray-800 text-2xl font-semibold mb-6 pl-4">Enter your text here</h2>
 
-        <input
-          type="text"
-          placeholder="Type your emotion here..."
+      <textarea
+          placeholder="Express your feelings here...✍️"
           value={text}
           onChange={(e) => setText(e.target.value)}
+          rows={3} // You can adjust the height here (like rows={6} or rows={8})
           className="w-full px-5 py-3 mb-8 bg-pink-100 text-gray-900 rounded-lg 
-          focus:outline-none focus:ring-4 focus:ring-pink-300 transition duration-300"
+          focus:outline-none focus:ring-4 focus:ring-pink-300 transition duration-300 resize-none"
         />
 
-        <div className="flex justify-center gap-4">
+
+        <div className="flex justify-center gap-10">
           <button
             onClick={handleDetect}
             className="bg-pink-400 hover:bg-pink-500 text-white font-semibold px-6 py-2 
@@ -52,8 +54,8 @@ export default function InputSection({ onDetect, result }) {
           </button>
           <button
             onClick={() => setText("")}
-            className="bg-purple-300 hover:bg-purple-400 text-white font-semibold px-6 py-2 
-            rounded-full transition-all duration-300 shadow-lg hover:scale-105"
+            className="bg-purple-400 hover:bg-purple-500 text-white font-semibold px-6 py-2 
+            rounded-full transition-all duration-300 shadow-lg hover:scale-105 w-45 "
           >
              CLEAR
           </button>

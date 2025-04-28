@@ -50,18 +50,17 @@ export default function EmotionDetector() {
     setShowEmojis(false);
   
     try {
-      const response = await axios.post("http://localhost:8000/predict", { text });
-  
+      const response = await axios.post("http://localhost:8000/predict", { text });  
       const { prediction: detected, confidence_scores: emotion_probabilities } = response.data;
   
       setEmotion(detected);
       setEmotionData({
-        joy: Math.round(emotion_probabilities.joy * 100),
-        sad: Math.round(emotion_probabilities.sad * 100),
-        anger: Math.round(emotion_probabilities.anger * 100),
-        fear: Math.round(emotion_probabilities.fear * 100),
-        love: Math.round(emotion_probabilities.love * 100),
-        surprise: Math.round(emotion_probabilities.surprise * 100),
+        joy: emotion_probabilities.joy || 0,
+        sad: emotion_probabilities.sad || 0,
+        anger: emotion_probabilities.anger || 0,
+        fear: emotion_probabilities.fear || 0,
+        love: emotion_probabilities.love || 0,
+        surprise: emotion_probabilities.surprise || 0,
       });
   
     } catch (error) {
@@ -71,6 +70,7 @@ export default function EmotionDetector() {
       setLoading(false);
     }
   };
+  
   
 
   useEffect(() => {
@@ -89,8 +89,9 @@ export default function EmotionDetector() {
     name: name.charAt(0).toUpperCase() + name.slice(1),
     emoji: emojiMap[name],
     color: colorMap[name],
-    value,
-  }));
+    value: value || 0, 
+}));
+
 
   return (
     <div className="min-h-screen bg-white p-4">
