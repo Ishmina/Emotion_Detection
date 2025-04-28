@@ -19,19 +19,19 @@ export default function AnalysisBox({ emotionData }) {
   const total = data.reduce((acc, cur) => acc + cur.value, 0);
 
   const darkColors = {
-    joy: "#F9CB43",      // bright yellow
+    joy: "#ffa500",      // orange
     sad: "#4F88E3",      // blue
     anger: "#F73131",    // red
     fear: "#9F54D9",     // purple
     love: "#F56597",     // pink
-    surprise: "#F77F21", // orange
+    surprise: "#009688", // green
   };
 
   const renderCustomizedLabel = ({ percent }) =>
     `${(percent * 100).toFixed(2)}%`;  // Fixed decimal places
 
   return (
-    <div className="w-full  max-w-xl mx-auto mt-1 mb-1 bg-pink-200 p-6 rounded-2xl shadow-lg h-[650px] flex flex-col justify-between transition-transform duration-500 ease-in-out hover:scale-105">
+    <div className="w-full mt-13 max-w-xl mx-auto mt-1 mb-1 bg-pink-200 p-6  rounded-2xl shadow-lg h-[650px] flex flex-col justify-between transition-transform duration-500 ease-in-out hover:scale-105">
       <h2 className="text-center text-3xl font-extrabold text-pink-800 mb-2">
         EMOTION ANALYSIS
       </h2>

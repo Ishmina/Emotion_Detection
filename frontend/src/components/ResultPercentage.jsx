@@ -4,7 +4,7 @@ import React from "react";
 
 const emotions = [
   { name: "Sad", emoji: "🥲", color: "bg-blue-500 border-blue-600 text-blue-100" },
-  { name: "Joy", emoji: "😄", color: "bg-yellow-400 border-yellow-500 text-yellow-100" },
+  { name: "Joy", emoji: "😄", color: "bg-orange-500 border-yellow-500 text-yellow-100" },
   { name: "Anger", emoji: "😡", color: "bg-red-500 border-red-600 text-red-100"},
   { name: "Fear", emoji: "😱", color: "bg-purple-500 border-purple-600 text-purple-100" },
   { name: "Love", emoji: "🩷", color: "bg-pink-500 border-pink-600 text-pink-100" },

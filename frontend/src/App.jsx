@@ -51,7 +51,18 @@ export default function EmotionDetector() {
   
     try {
       const response = await axios.post("http://localhost:8000/predict", { text });  
+      console.log (response);
       const { prediction: detected, confidence_scores: emotion_probabilities } = response.data;
+      //console.log (response.data.confidence_scores.joy);
+      console.log(detected, emotion_probabilities);
+
+      if (emotion_probabilities.suprise) {
+        emotion_probabilities.surprise = emotion_probabilities.suprise;
+        delete emotion_probabilities.suprise;
+      }
+    
+      console.log(detected, emotion_probabilities);
+      
   
       setEmotion(detected);
       setEmotionData({
@@ -98,7 +109,7 @@ export default function EmotionDetector() {
       <div className=" bg-pink-300 px-6 py-4 flex justify-between items-center rounded-xl shadow-lg">
           
         <span className="flex ">
-          <img src="https://cdn-icons-png.flaticon.com/128/14511/14511544.png" alt="" className="w-13 h-12 " />
+          <img src="LOGO.png" alt="" className="w-13 h-12 " />
 
           <h1 className="text-3xl font-semibold text-white tracking-wide pl-3"> Emotion Detector </h1>
         </span>
