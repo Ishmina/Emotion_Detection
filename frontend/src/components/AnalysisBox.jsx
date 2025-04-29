@@ -28,16 +28,15 @@ export default function AnalysisBox({ emotionData }) {
     surprise: "#009688", // green
   };
 
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+    if (percent < 0.01) return null; // Hide labels for <5%
+  
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const RADIAN = Math.PI / 180;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    const value = (percent * 100).toFixed(2);
-    console.log(`Label ${index}: ${value}%`);
-
-    return percent > 0 ? (
+  
+    return (
       <text
         x={x}
         y={y}
@@ -46,10 +45,11 @@ export default function AnalysisBox({ emotionData }) {
         dominantBaseline="central"
         fontSize="12"
       >
-        {`${value}%`}
+        {(percent * 100).toFixed(2) + "%"}
       </text>
-    ) : null;
+    );
   };
+  
 
   return (
     <div className="w-full mt-14 max-w-xl mx-auto mb-1 bg-pink-200 p-6  rounded-2xl shadow-lg h-[650px] flex flex-col justify-between transition-transform duration-500 ease-in-out hover:scale-105">
