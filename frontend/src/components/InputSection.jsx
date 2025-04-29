@@ -48,14 +48,14 @@ export default function InputSection({ onDetect, result }) {
           <button
             onClick={handleDetect}
             className="bg-pink-400 hover:bg-pink-500 text-white font-semibold px-6 py-2 
-            rounded-full transition-all duration-300 shadow-lg hover:scale-105"
+            rounded-full transition-all duration-300 shadow-lg hover:scale-105 cursor-pointer"
           >
              DETECT EMOTION
           </button>
           <button
             onClick={() => setText("")}
             className="bg-purple-400 hover:bg-purple-500 text-white font-semibold px-6 py-2 
-            rounded-full transition-all duration-300 shadow-lg hover:scale-105 w-45 "
+            rounded-full transition-all duration-300 shadow-lg hover:scale-105 w-45 cursor-pointer"
           >
              CLEAR
           </button>

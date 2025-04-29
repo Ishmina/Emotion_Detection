@@ -11,6 +11,7 @@ import {
 } from "recharts";
 
 export default function AnalysisBox({ emotionData }) {
+  // console.log(emotionData);
   const data = Object.entries(emotionData).map(([key, value]) => ({
     name: key,
     value: value,
@@ -27,11 +28,31 @@ export default function AnalysisBox({ emotionData }) {
     surprise: "#009688", // green
   };
 
-  const renderCustomizedLabel = ({ percent }) =>
-    `${(percent * 100).toFixed(2)}%`;  // Fixed decimal places
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const RADIAN = Math.PI / 180;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    const value = (percent * 100).toFixed(2);
+    console.log(`Label ${index}: ${value}%`);
+
+    return percent > 0 ? (
+      <text
+        x={x}
+        y={y}
+        fill="black"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fontSize="12"
+      >
+        {`${value}%`}
+      </text>
+    ) : null;
+  };
 
   return (
-    <div className="w-full mt-13 max-w-xl mx-auto mt-1 mb-1 bg-pink-200 p-6  rounded-2xl shadow-lg h-[650px] flex flex-col justify-between transition-transform duration-500 ease-in-out hover:scale-105">
+    <div className="w-full mt-14 max-w-xl mx-auto mb-1 bg-pink-200 p-6  rounded-2xl shadow-lg h-[650px] flex flex-col justify-between transition-transform duration-500 ease-in-out hover:scale-105">
       <h2 className="text-center text-3xl font-extrabold text-pink-800 mb-2">
         EMOTION ANALYSIS
       </h2>
@@ -64,21 +85,36 @@ export default function AnalysisBox({ emotionData }) {
                 border: "none",
                 fontSize: "12px",
               }}
-              formatter={(value) =>
-                `${value} (${((value / total) * 100).toFixed(2)}%)`
-              }
+              formatter={(value, name) => {
+                const safeValue = parseFloat(value) || 0;
+                const percentage = ((safeValue / total) * 100).toFixed(2);
+                return [`${safeValue} (${percentage}%)`, name];  // ✅ Must return [value, name]
+              }}
+
             />
             <Legend
               iconType="circle"
               layout="horizontal"
               verticalAlign="bottom"
               align="center"
-              wrapperStyle={{
-                color: "#4B5563",
-                fontSize: "13px",
-                marginTop: "10px",
-              }}
             />
+
+
+            {/* <Legend
+              formatter={(value, entry) => {
+                const item = data.find(d => d.name === value);
+                const pct = ((item.value / total) * 100).toFixed(2);
+                return `${value.toUpperCase()} - ${pct}%`;
+              }}
+              iconType="circle"
+              layout="horizontal"
+              verticalAlign="bottom"
+              align="center"
+            /> */}
+
+
+
+
           </PieChart>
         </ResponsiveContainer>
       </div>

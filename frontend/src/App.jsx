@@ -50,20 +50,9 @@ export default function EmotionDetector() {
     setShowEmojis(false);
   
     try {
-      const response = await axios.post("http://localhost:8000/predict", { text });  
-      console.log (response);
-      const { prediction: detected, confidence_scores: emotion_probabilities } = response.data;
-      //console.log (response.data.confidence_scores.joy);
-      console.log(detected, emotion_probabilities);
+      const response = await axios.post("http://localhost:8000/predict", { text });
+      const { prediction: detected, confidence_scores: emotion_probabilities } = response.data
 
-      if (emotion_probabilities.suprise) {
-        emotion_probabilities.surprise = emotion_probabilities.suprise;
-        delete emotion_probabilities.suprise;
-      }
-    
-      console.log(detected, emotion_probabilities);
-      
-  
       setEmotion(detected);
       setEmotionData({
         joy: emotion_probabilities.joy || 0,
@@ -83,7 +72,6 @@ export default function EmotionDetector() {
   };
   
   
-
   useEffect(() => {
     if (emotion) {
       const timer = setTimeout(() => {
@@ -94,7 +82,7 @@ export default function EmotionDetector() {
     }
   }, [emotion]);
 
-  const getEmojiForEmotion = (emotion) => emojiMap[emotion.toLowerCase()] || "💭";
+  const getEmojiForEmotion = (emotion) => emojiMap[emotion.toLowerCase()] ;
 
   const enhancedEmotionData = Object.entries(emotionData).map(([name, value]) => ({
     name: name.charAt(0).toUpperCase() + name.slice(1),

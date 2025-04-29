@@ -22,7 +22,7 @@ export default function DetectedEmotion({ emotion }) {
     happy: "bg-orange-100 border-orange-300 shadow-orange-300/50 text-orange-800",
   };
 
-  const emoji = emotionEmojiMap[emotion?.toLowerCase()] || "❓";
+  const emoji = emotionEmojiMap[emotion?.toLowerCase()];
   const styles =
     emotionColorMap[emotion?.toLowerCase()] ||
     "bg-gray-100 border-gray-300 shadow-gray-300/50 text-gray-800";
